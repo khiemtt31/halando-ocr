@@ -1,0 +1,103 @@
+{
+  "realm": "halando",
+  "enabled": true,
+  "displayName": "Halando Local",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": false,
+  "editUsernameAllowed": false,
+  "roles": {
+    "realm": [
+      {
+        "name": "documents:read",
+        "description": "Read owned documents"
+      },
+      {
+        "name": "documents:write",
+        "description": "Upload and update owned documents"
+      },
+      {
+        "name": "documents:delete",
+        "description": "Delete owned documents"
+      },
+      {
+        "name": "jobs:read",
+        "description": "Read OCR jobs"
+      },
+      {
+        "name": "jobs:run",
+        "description": "Start, retry, and cancel OCR jobs"
+      },
+      {
+        "name": "admin:manage",
+        "description": "Access local admin API endpoints"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "halando-api",
+      "name": "Halando Local API and UI",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "bearerOnly": false,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "implicitFlowEnabled": false,
+      "serviceAccountsEnabled": false,
+      "redirectUris": [
+        "http://localhost:8000/ui",
+        "http://127.0.0.1:8000/ui"
+      ],
+      "webOrigins": [
+        "http://localhost:8000",
+        "http://127.0.0.1:8000"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:8000/ui##http://127.0.0.1:8000/ui"
+      },
+      "protocolMappers": [
+        {
+          "name": "halando-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "halando-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "00000000-0000-4000-8000-000000000001",
+      "username": "demo",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "demo@halando.local",
+      "firstName": "Demo",
+      "lastName": "User",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "demo123!",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "documents:read",
+        "documents:write",
+        "documents:delete",
+        "jobs:read",
+        "jobs:run",
+        "admin:manage"
+      ]
+    }
+  ]
+}
