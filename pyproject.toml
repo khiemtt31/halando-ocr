@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "doc-ocr-api"
+version = "0.1.0"
+description = "Local Docker FastAPI document OCR API"
+requires-python = ">=3.14,<3.15"
+dependencies = [
+  "fastapi==0.139.0",
+  "uvicorn[standard]==0.50.2",
+  "pydantic==2.13.4",
+  "pydantic-settings==2.14.2",
+  "python-multipart==0.0.32",
+  "PyJWT==2.13.0",
+  "cryptography==46.0.3",
+  "httpx==0.28.1",
+  "SQLAlchemy==2.0.51",
+  "greenlet==3.3.1",
+  "aiosqlite==0.21.0",
+  "pdfplumber==0.11.10",
+  "python-dotenv==1.1.0",
+]
+
+[project.optional-dependencies]
+ocr = [
+  "Pillow==12.3.0",
+  "pytesseract==0.3.13",
+  "ocrmypdf==17.8.0",
+  "pdf2image==1.17.0",
+]
+dev = [
+  "pytest==8.4.2",
+  "pytest-asyncio==1.2.0",
+  "asgi-lifespan==2.1.0",
+  "reportlab==4.4.2",
+  "ruff==0.15.20",
+]
+
+[project.scripts]
+doc-ocr-api = "app.main:main"
+doc-ocr-worker = "app.workers.ocr_worker:main"
+
+[tool.setuptools]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 160
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["B008"]
