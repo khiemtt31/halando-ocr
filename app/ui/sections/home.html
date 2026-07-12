@@ -1,0 +1,53 @@
+<section id='homePage' class='page' data-page='/home' hidden>
+          <div class='page-heading'>
+            <div>
+              <p class='eyebrow'>Ready when your local API is ready</p>
+              <h1 tabindex='-1'>Turn PDFs and images into searchable text.</h1>
+              <p class='lead'>Upload a document, let OCR processing run locally, then read, search, download, or remove the result from one guided workspace.</p>
+            </div>
+            <div class='actions'>
+              <a class='btn' href='/home/upload' data-navigate='/home/upload'>Upload a document</a>
+              <a class='btn secondary' href='/home/documents' data-navigate='/home/documents'>View documents</a>
+            </div>
+          </div>
+
+          <div class='grid-2'>
+            <section class='card status-card compact'>
+              <div class='card-body'>
+                <span id='identityCardBadge' class='status pending'>Identity</span>
+                <strong id='identityCardTitle'>Current identity</strong>
+                <p id='identityCardText'>Loading the user used for document ownership.</p>
+              </div>
+            </section>
+          </div>
+
+          <section class='content-grid'>
+            <div class='card'>
+              <div class='card-header'>
+                <h2>Recommended Flow</h2>
+              </div>
+              <div class='card-body'>
+                <ol class='step-list'>
+                  <li><span><strong>Choose a PDF or image.</strong><br><span class='muted'>Upload creates a document and starts an OCR job for you.</span></span></li>
+                  <li><span><strong>Track processing.</strong><br><span class='muted'>Processing may take a moment while the local OCR worker is running.</span></span></li>
+                  <li><span><strong>Read or search the text.</strong><br><span class='muted'>Search works after the document has processed text.</span></span></li>
+                  <li><span><strong>Download or clean up.</strong><br><span class='muted'>Keep the original, download the OCR version when available, or delete the document.</span></span></li>
+                </ol>
+              </div>
+            </div>
+
+            <aside class='card'>
+              <div class='card-header'>
+                <h2>What can I do now?</h2>
+              </div>
+              <div class='card-body'>
+                <p class='hint'>Start with upload if your library is empty. Open documents when you want to select an existing file for text, OCR, or search.</p>
+                <div class='actions'>
+                  <a class='btn' href='/home/upload' data-navigate='/home/upload'>Start upload</a>
+                  <a class='btn secondary' href='/home/search' data-navigate='/home/search'>Search text</a>
+                  <a class='btn secondary' href='/home/admin' data-admin-only data-navigate='/home/admin' hidden>Inspect admin data</a>
+                </div>
+              </div>
+            </aside>
+          </section>
+        </section>

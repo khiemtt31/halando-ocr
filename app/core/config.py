@@ -13,6 +13,8 @@ class Settings(BaseSettings):
 
     app_name: str = "doc-ocr-api"
     app_env: str = "local"
+    server_host: str = "0.0.0.0"
+    server_port: int = 8000
     secret_key: str = "change-me-now"
     auth_provider: Literal["local", "keycloak"] = "local"
 

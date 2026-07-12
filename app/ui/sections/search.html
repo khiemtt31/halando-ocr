@@ -1,0 +1,59 @@
+<section id='searchPage' class='page' data-page='/home/search' hidden>
+          <div class='page-heading'>
+            <div>
+              <p class='eyebrow'>Search</p>
+              <h1 tabindex='-1'>Find answers in processed documents.</h1>
+              <p class='lead'>Search all processed documents or narrow the query to the currently selected document.</p>
+            </div>
+          </div>
+
+          <div class='guidance'>
+            <span class='guidance-icon'>4</span>
+            <div>
+              <h2>Search guidance</h2>
+              <p class='hint'>Search works after OCR has produced text. If results are empty, confirm the document job has completed.</p>
+            </div>
+          </div>
+
+          <section class='content-grid'>
+            <div class='card'>
+              <div class='card-header'>
+                <h2>Search Documents</h2>
+                <span id='searchStatus' class='status-text'>Waiting for query</span>
+              </div>
+              <div class='card-body'>
+                <label for='searchQuery'>Search query
+                  <input id='searchQuery' placeholder='invoice, total, ABC-123' autocomplete='off'>
+                </label>
+                <div class='form-row'>
+                  <label for='searchScope'>Scope
+                    <select id='searchScope'>
+                      <option value='all'>All documents</option>
+                      <option value='selected'>Selected document</option>
+                    </select>
+                  </label>
+                  <label id='searchDocumentField' for='searchDocumentId' hidden>Selected document ID
+                    <input id='searchDocumentId' placeholder='Select or paste a document ID' autocomplete='off'>
+                  </label>
+                </div>
+                <div class='actions'>
+                  <button id='searchBtn'>Search</button>
+                  <a class='btn secondary' href='/home/documents' data-navigate='/home/documents'>Choose document</a>
+                </div>
+              </div>
+            </div>
+
+            <aside class='card'>
+              <div class='card-header'>
+                <h2>Results</h2>
+              </div>
+              <div class='card-body'>
+                <div id='searchResults' class='empty-state'>Enter a query to search processed document text.</div>
+                <details>
+                  <summary>Raw search response</summary>
+                  <pre id='searchOutput' class='result'>Search response will appear here.</pre>
+                </details>
+              </div>
+            </aside>
+          </section>
+        </section>

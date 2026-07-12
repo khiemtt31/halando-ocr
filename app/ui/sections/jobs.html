@@ -1,0 +1,63 @@
+<section id='jobsPage' class='page' data-page='/home/jobs' hidden>
+          <div class='page-heading'>
+            <div>
+              <p class='eyebrow'>Jobs</p>
+              <h1 tabindex='-1'>Track OCR progress clearly.</h1>
+              <p class='lead'>Look up a job, poll progress, retry failed work, cancel queued work, or start OCR for the selected document.</p>
+            </div>
+            <div class='actions'>
+              <button id='listJobsBtn' class='secondary'>Refresh jobs</button>
+            </div>
+          </div>
+
+          <div class='guidance'>
+            <span class='guidance-icon'>3</span>
+            <div>
+              <h2>Status meanings</h2>
+              <p class='hint'>Pending means waiting, running means OCR is active, completed means text is ready, failed needs attention, and cancelled was stopped intentionally.</p>
+            </div>
+          </div>
+
+          <section class='content-grid'>
+            <div class='card'>
+              <div class='card-header'>
+                <h2>Job Lookup</h2>
+                <span id='pollState' class='status-text'>Polling off</span>
+              </div>
+              <div class='card-body'>
+                <div class='form-row'>
+                  <label for='jobId'>Job ID
+                    <input id='jobId' placeholder='Paste or upload to fill automatically' autocomplete='off'>
+                  </label>
+                  <label for='documentId'>Document ID
+                    <input id='documentId' placeholder='Select or upload to fill automatically' autocomplete='off'>
+                  </label>
+                </div>
+                <div class='actions'>
+                  <button id='getJobBtn'>Get job</button>
+                  <span class='tooltip-wrap'>
+                    <button id='pollJobBtn' class='secondary' aria-describedby='tip-polling'>Start polling</button>
+                    <span id='tip-polling' class='tooltip' role='tooltip'>Polling refreshes the selected job every two seconds until you stop it.</span>
+                  </span>
+                  <button id='startOcrBtn' class='secondary'>Start OCR for document</button>
+                  <button id='retryJobBtn' class='secondary'>Retry job</button>
+                  <button id='cancelJobBtn' class='danger'>Cancel job</button>
+                </div>
+                <div id='jobSummary' class='empty-state'>Choose a job to see progress, attempts, and timing.</div>
+                <details>
+                  <summary>Raw job response</summary>
+                  <pre id='jobOutput' class='result'>Job response will appear here.</pre>
+                </details>
+              </div>
+            </div>
+
+            <aside class='card'>
+              <div class='card-header'>
+                <h2>Recent Jobs</h2>
+              </div>
+              <div class='card-body'>
+                <div id='jobsOutput' class='empty-state'>Refresh jobs to see recent OCR work for this identity.</div>
+              </div>
+            </aside>
+          </section>
+        </section>

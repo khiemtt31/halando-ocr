@@ -1,0 +1,54 @@
+<section id='documentsPage' class='page' data-page='/home/documents' hidden>
+          <div class='page-heading'>
+            <div>
+              <p class='eyebrow'>Documents</p>
+              <h1 tabindex='-1'>Browse your document library.</h1>
+              <p class='lead'>Select a document to fill the shared document ID for text, search, downloads, and OCR actions.</p>
+            </div>
+            <div class='actions'>
+              <button id='listDocsBtn'>Refresh documents</button>
+              <a class='btn secondary' href='/home/upload' data-navigate='/home/upload'>Upload new</a>
+            </div>
+          </div>
+
+          <div class='guidance'>
+            <span class='guidance-icon'>2</span>
+            <div>
+              <h2>Library guidance</h2>
+              <p class='hint'>Documents belong to the current identity. Changing identity changes which library you can see.</p>
+            </div>
+          </div>
+
+          <section class='content-grid'>
+            <div class='card'>
+              <div class='card-header'>
+                <h2>Your Documents</h2>
+                <span id='documentsStatus' class='status-text'>Not loaded</span>
+              </div>
+              <div class='card-body'>
+                <div id='documentsOutput' class='empty-state'>No documents loaded yet. Refresh the library or upload a document.</div>
+              </div>
+            </div>
+
+            <aside class='card'>
+              <div class='card-header'>
+                <h2>Selected Document</h2>
+              </div>
+              <div class='card-body'>
+                <div id='selectedDocumentSummary' class='empty-state'>Select a document from the library to enable quick actions.</div>
+                <label for='textDocumentId'>Document ID for text and downloads
+                  <input id='textDocumentId' placeholder='Select or paste a document ID' autocomplete='off'>
+                </label>
+                <div class='actions'>
+                  <button id='getTextBtn'>Read text</button>
+                  <button id='downloadOriginalBtn' class='secondary'>Download original</button>
+                  <span class='tooltip-wrap'>
+                    <button id='downloadOcrBtn' class='secondary' aria-describedby='tip-ocr-download'>Download OCR</button>
+                    <span id='tip-ocr-download' class='tooltip' role='tooltip'>If an OCR PDF is not available yet, the API may return the original file.</span>
+                  </span>
+                </div>
+                <pre id='textOutput' class='result'>Extracted text will appear here.</pre>
+              </div>
+            </aside>
+          </section>
+        </section>

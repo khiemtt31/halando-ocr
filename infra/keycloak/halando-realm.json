@@ -48,6 +48,8 @@
       "implicitFlowEnabled": false,
       "serviceAccountsEnabled": false,
       "redirectUris": [
+        "http://localhost:8000/home",
+        "http://127.0.0.1:8000/home",
         "http://localhost:8000/ui",
         "http://127.0.0.1:8000/ui"
       ],
@@ -57,7 +59,7 @@
       ],
       "attributes": {
         "pkce.code.challenge.method": "S256",
-        "post.logout.redirect.uris": "http://localhost:8000/ui##http://127.0.0.1:8000/ui"
+        "post.logout.redirect.uris": "http://localhost:8000/home##http://127.0.0.1:8000/home##http://localhost:8000/ui##http://127.0.0.1:8000/ui"
       },
       "protocolMappers": [
         {

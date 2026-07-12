@@ -1,0 +1,69 @@
+<section id='uploadPage' class='page' data-page='/home/upload' hidden>
+          <div class='page-heading'>
+            <div>
+              <p class='eyebrow'>Upload</p>
+              <h1 tabindex='-1'>Choose a file to start OCR.</h1>
+              <p class='lead'>Upload a PDF or image from your computer. The app creates a document and an OCR job in one step.</p>
+            </div>
+          </div>
+
+          <div class='guidance'>
+            <span class='guidance-icon'>1</span>
+            <div>
+              <h2>First step</h2>
+              <p class='hint'>Choose a supported PDF or image. If you know the language, add a short hint such as <span class='mono'>eng</span> or <span class='mono'>vie</span>.</p>
+            </div>
+          </div>
+
+          <section class='content-grid'>
+            <div class='card'>
+              <div class='card-header'>
+                <h2>Document Upload</h2>
+              </div>
+              <div class='card-body'>
+                <label class='field-label' for='uploadFile'>Document file</label>
+                <div id='dropZone' class='drop-zone'>
+                  <span class='upload-icon'>+</span>
+                  <div>
+                    <h3>Drop a file here or choose one from your computer.</h3>
+                    <p class='hint'>Supported by this local UI: PDF, PNG, JPEG, TIFF, and WebP.</p>
+                  </div>
+                  <input id='uploadFile' type='file' accept='application/pdf,image/png,image/jpeg,image/jpg,image/tiff,image/webp'>
+                  <p id='uploadFileName' class='fine-print'>No file selected yet.</p>
+                </div>
+
+                <div class='form-row'>
+                  <label for='languageHint'>
+                    <span class='tooltip-wrap'>
+                      Language hint
+                      <button type='button' class='tooltip-trigger' aria-describedby='tip-language'>?</button>
+                      <span id='tip-language' class='tooltip' role='tooltip'>Optional OCR language hints use short codes like eng or vie.</span>
+                    </span>
+                    <input id='languageHint' placeholder='eng or vie' autocomplete='off'>
+                  </label>
+                  <div>
+                    <span class='field-label'>Upload action</span>
+                    <div class='actions'>
+                      <button id='uploadBtn'>Upload and start OCR</button>
+                      <button id='refreshDocsBtn' class='secondary'>Refresh documents</button>
+                    </div>
+                  </div>
+                </div>
+                <p id='uploadError' class='error-text' aria-live='polite'></p>
+              </div>
+            </div>
+
+            <aside class='card'>
+              <div class='card-header'>
+                <h2>Upload Result</h2>
+              </div>
+              <div class='card-body'>
+                <div id='uploadResult' class='empty-state'>Upload a document to see the document ID, job ID, and next actions.</div>
+                <details>
+                  <summary>Raw upload response</summary>
+                  <pre id='uploadOutput' class='result'>Upload response will appear here.</pre>
+                </details>
+              </div>
+            </aside>
+          </section>
+        </section>
