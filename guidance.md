@@ -22,7 +22,7 @@ Read these in order if you are new to the project:
 2. `docs/application-flow.md`: step-by-step request, worker, search, and delete flow.
 3. `docs/docker.md`: Docker commands, reset workflow, logs, and troubleshooting.
 4. `docs/architecture.md`: code layers, runtime components, storage, database, and auth.
-5. `docs/test-ui.md`: browser UI for manually testing the local API.
+5. `docs/home-ui.md`: browser UI workflow.
 6. `docs/api.md`: endpoint guide and role requirements.
 7. `docs/development-guidelines.md`: rules for adding features without making the codebase hard to maintain.
 
@@ -54,7 +54,7 @@ cp .env.example .env
 
 Open the app:
 
-- Test UI: `http://localhost:8000/ui`
+- Home UI: `http://localhost:8000/home`
 - API docs: `http://localhost:8000/docs`
 - Health: `http://localhost:8000/health`
 - Ready: `http://localhost:8000/ready`
@@ -94,11 +94,10 @@ app/
   repositories/         Database query and persistence functions
   schemas/              Pydantic request and response models
   services/             Business rules for documents, audit, search, and storage
-  ui/                   No-build browser test UI served at /ui
+  ui/                   No-build browser Home UI served at /home
   workers/              OCR worker loop and OCR/extraction pipeline
 docs/                   Human-readable architecture, flow, Docker, API, and dev docs
 infra/bruno/            Minimal Bruno API collection metadata for local requests
-tests/                  Async smoke and unit tests
 ```
 
 The code is organized so endpoint files stay focused on HTTP concerns, services hold business rules, repositories hold database access, and workers handle background OCR processing.
@@ -197,12 +196,11 @@ Run these outside Docker when changing code:
 python3 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
 .venv/bin/python -m pip install -e '.[dev]'
-.venv/bin/ruff check app tests
-.venv/bin/python -m compileall app tests
-.venv/bin/pytest
+.venv/bin/ruff check app
+.venv/bin/python -m compileall app
 ```
 
-The main smoke test covers upload, worker processing, extracted text, search, and delete. Storage unit tests cover local filesystem behavior.
+Use Docker smoke checks for upload, worker processing, extracted text, search, and delete flows.
 
 ## Troubleshooting
 

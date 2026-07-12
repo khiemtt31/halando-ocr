@@ -28,11 +28,6 @@ services:
       - ./app:/app/app
       - ./data:/app/data
     command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--reload-dir", "/app/app"]
-    healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
     depends_on:
       keycloak:
         condition: service_started
@@ -53,4 +48,4 @@ services:
     command: ["watchfiles", "--filter", "python", "python -m app.workers.ocr_worker", "/app/app"]
     depends_on:
       api:
-        condition: service_healthy
+        condition: service_started

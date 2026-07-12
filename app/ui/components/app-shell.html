@@ -1,0 +1,46 @@
+<a class='skip-link' href='#appMain'>Skip to content</a>
+
+    <header class='app-header'>
+      <div class='topbar'>
+        <a class='brand' href='/home' data-navigate='/home'>
+          <span class='brand-mark'>OCR</span>
+          <span>
+            <span class='brand-title'>Document OCR</span>
+            <span class='brand-subtitle'>Local searchable documents</span>
+          </span>
+        </a>
+
+        <nav class='primary-nav' aria-label='Primary navigation'>
+          <a class='nav-link' href='/home' data-nav='home' data-navigate='/home'>Home</a>
+          <a class='nav-link' href='/home/upload' data-nav='upload' data-navigate='/home/upload' data-auth-only hidden>Upload</a>
+          <a class='nav-link' href='/home/documents' data-nav='documents' data-navigate='/home/documents' data-auth-only hidden>Documents</a>
+          <a class='nav-link' href='/home/jobs' data-nav='jobs' data-navigate='/home/jobs' data-auth-only hidden>Jobs</a>
+          <a class='nav-link' href='/home/search' data-nav='search' data-navigate='/home/search' data-auth-only hidden>Search</a>
+          <a class='nav-link' href='/home/identity' data-nav='identity' data-navigate='/home/identity' data-auth-only hidden>Identity</a>
+          <a class='nav-link' href='/home/admin' data-nav='admin' data-admin-only data-navigate='/home/admin' hidden>Admin</a>
+          <a class='nav-link' href='/home/logs' data-nav='logs' data-navigate='/home/logs' data-auth-only hidden>Logs</a>
+          <a class='nav-link' href='/home/help' data-nav='help' data-navigate='/home/help'>Help</a>
+        </nav>
+
+        <div class='top-actions' aria-label='Account actions'>
+          <button id='topLoginBtn' class='secondary' hidden>Sign in</button>
+        </div>
+      </div>
+    </header>
+
+    <section id='authPrompt' class='auth-banner' aria-live='polite' hidden>
+      <div class='auth-banner-inner'>
+        <p><strong>Sign in required.</strong> Protected document actions need a Keycloak session before they can call the API.</p>
+        <div class='actions'>
+          <button id='authPromptLoginBtn'>Sign in with Keycloak</button>
+          <a class='btn secondary' href='/home/identity' data-navigate='/home/identity'>Identity help</a>
+        </div>
+      </div>
+    </section>
+
+    <div id='toastRegion' class='toast-region' role='status' aria-live='polite' aria-atomic='true'></div>
+
+    <div class='shell'>
+      <main id='appMain' tabindex='-1'>
+        </main>
+    </div>

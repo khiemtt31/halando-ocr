@@ -83,16 +83,23 @@ class KeycloakAuthProvider:
             raise APIError("AUTH_PROVIDER_UNAVAILABLE", "Keycloak signing keys are unavailable.", 503) from exc
 
         keys: dict[str, Any] = {}
+        allowed_algorithms = set(self.settings.keycloak_algorithms_list)
         for raw_key in jwks.get("keys", []):
             if not isinstance(raw_key, dict):
                 continue
             key_id = raw_key.get("kid")
             if not key_id:
                 continue
+            key_use = raw_key.get("use")
+            if key_use and key_use != "sig":
+                continue
+            algorithm = raw_key.get("alg")
+            if algorithm and algorithm not in allowed_algorithms:
+                continue
             try:
                 keys[str(key_id)] = jwt.PyJWK.from_dict(raw_key).key
-            except jwt.PyJWKError as exc:
-                raise APIError("AUTH_PROVIDER_UNAVAILABLE", "Keycloak signing key is invalid.", 503) from exc
+            except jwt.PyJWKError:
+                continue
 
         if not keys:
             raise APIError("AUTH_PROVIDER_UNAVAILABLE", "Keycloak did not publish signing keys.", 503)

@@ -34,7 +34,7 @@ It explores how a real backend system can:
 * 🔐 Protect endpoints using Keycloak
 * 🗃️ Store job and document metadata
 * 🐳 Package system dependencies with Docker
-* 🧪 Document and test APIs using Bruno
+* Document APIs using Bruno
 * 🚨 Handle failures without crashing the entire application
 
 ---
@@ -262,7 +262,6 @@ halando-ocr-api/
 │   ├── processed/
 │   └── app.db
 │
-├── tests/
 ├── .env.example
 ├── Dockerfile
 ├── docker-compose.yml
@@ -393,7 +392,7 @@ http://localhost:8000/docs
 Open the local browser UI and sign in with the seeded Keycloak account:
 
 ```text
-http://localhost:8000/ui
+http://localhost:8000/home
 username: demo
 password: demo123!
 ```
@@ -567,7 +566,7 @@ A project does not need to run on an expensive cloud platform to demonstrate:
 * Database design
 * Background processing
 * API documentation
-* Automated testing
+* Manual local verification
 * Error handling
 * Security awareness
 
@@ -612,7 +611,7 @@ This project demonstrates an understanding of several backend concepts working t
 * 🗣️ Add more OCR languages
 * 🔎 Add full-text document search
 * 📑 Export extracted content as JSON or TXT
-* 🧪 Add integration and performance tests
+* Add performance profiling tools
 * 📈 Add Prometheus-compatible metrics
 * 🧾 Add structured audit logs
 * ☁️ Add optional cloud object storage
@@ -634,10 +633,11 @@ Start the OCR worker:
 python -m app.workers.ocr_worker
 ```
 
-Run tests:
+Run checks:
 
 ```bash
-pytest
+ruff check app
+python -m compileall app
 ```
 
 Run formatting:
@@ -715,7 +715,7 @@ Everything is on fire?
 🟢 Keycloak integration
 🟡 Background worker flow
 🟡 Bruno API collection
-⚪ Automated test coverage
+⚪ Performance profiling
 ⚪ Advanced preprocessing
 ⚪ Production deployment
 ```

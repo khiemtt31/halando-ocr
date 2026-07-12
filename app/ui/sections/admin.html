@@ -1,0 +1,29 @@
+<section id='adminPage' class='page' data-page='/home/admin' hidden>
+          <div class='page-heading'>
+            <div>
+              <p class='eyebrow'>Admin</p>
+              <h1 tabindex='-1'>Inspect local data.</h1>
+              <p class='lead'>Admin data is available only when the current identity includes the <span class='mono'>admin:manage</span> role.</p>
+            </div>
+            <div class='actions'>
+              <button id='loadAdminBtn'>Load admin data</button>
+            </div>
+          </div>
+
+          <div id='adminAccessState' class='guidance'>
+            <span class='guidance-icon'>A</span>
+            <div>
+              <h2>Admin access</h2>
+              <p class='hint'>Checking the current identity roles.</p>
+            </div>
+          </div>
+
+          <section class='card'>
+            <div class='card-header'>
+              <h2>Admin Overview</h2>
+            </div>
+            <div class='card-body'>
+              <div id='adminOutput' class='empty-state'>Load admin data to inspect documents, jobs, and audit events.</div>
+            </div>
+          </section>
+        </section>

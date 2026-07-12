@@ -1,0 +1,66 @@
+<section id='identityPage' class='page' data-page='/home/identity' hidden>
+          <div class='page-heading'>
+            <div>
+              <p class='eyebrow'>Identity</p>
+              <h1 tabindex='-1'>Control the local demo identity.</h1>
+              <p class='lead'>Most sessions do not need changes here. Use another identity only when you want a separate document library.</p>
+            </div>
+          </div>
+
+          <div class='guidance'>
+            <span class='guidance-icon'>!</span>
+            <div>
+              <h2>Identity warning</h2>
+              <p class='hint'>Changing subject changes visible documents because ownership checks still apply. Roles control which actions the API allows.</p>
+            </div>
+          </div>
+
+          <section class='content-grid'>
+            <div class='card'>
+              <div class='card-header'>
+                <h2>Sign In And Principal</h2>
+                <span id='authStatus' class='status pending'>Loading</span>
+              </div>
+              <div class='card-body'>
+                <p id='authHint' class='hint'>Loading authentication configuration.</p>
+                <div id='seededAccount' class='empty-state' hidden></div>
+                <div class='actions'>
+                  <button id='loginBtn'>Sign in with Keycloak</button>
+                  <button id='logoutBtn' class='secondary'>Sign out</button>
+                  <button id='meBtn' class='secondary'>Load current identity</button>
+                  <button id='healthBtn' class='secondary'>Check health</button>
+                </div>
+                <pre id='identityOutput' class='result'>Identity output will appear here.</pre>
+              </div>
+            </div>
+
+            <aside class='card'>
+              <div class='card-header'>
+                <h2>Local Header Identity</h2>
+              </div>
+              <div id='localIdentityFields' class='card-body'>
+                <p class='hint'>These values are sent as local demo headers only when the app uses local auth.</p>
+                <label for='demoSub'>Subject
+                  <input id='demoSub' value='demo-user' autocomplete='off'>
+                </label>
+                <label for='demoEmail'>Email
+                  <input id='demoEmail' value='demo@example.com' autocomplete='off'>
+                </label>
+                <label for='demoName'>Name
+                  <input id='demoName' value='Demo User' autocomplete='off'>
+                </label>
+                <label for='demoRoles'>
+                  <span class='tooltip-wrap'>
+                    Roles
+                    <button type='button' class='tooltip-trigger' aria-describedby='tip-roles'>?</button>
+                    <span id='tip-roles' class='tooltip' role='tooltip'>Roles decide whether this identity can read, write, delete, run jobs, or use admin screens.</span>
+                  </span>
+                  <textarea id='demoRoles'>documents:read,documents:write,documents:delete,jobs:read,jobs:run</textarea>
+                </label>
+                <div class='actions'>
+                  <button id='saveIdentityBtn' class='secondary'>Save local identity</button>
+                </div>
+              </div>
+            </aside>
+          </section>
+        </section>
