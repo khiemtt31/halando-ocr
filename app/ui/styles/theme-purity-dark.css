@@ -23,6 +23,7 @@
         --radius-lg: 24px;
         --radius-md: 20px;
         --radius-sm: 14px;
+        --container-gutter: 32px;
       }
 
       html {
@@ -71,14 +72,14 @@
         border-radius: 28px;
         background: var(--surface-gradient);
         box-shadow: var(--shadow);
-        padding: 22px 16px;
+        padding: var(--space-xl) var(--space-md);
       }
 
       .brand {
         grid-template-columns: 44px minmax(0, 1fr);
-        gap: 12px;
+        gap: var(--space-sm);
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 0 8px 20px;
+        padding: 0 var(--space-xs) var(--space-lg);
       }
 
       .brand-mark {
@@ -104,8 +105,8 @@
 
       .primary-nav {
         display: grid;
-        gap: 8px;
-        margin-top: 18px;
+        gap: var(--space-xs);
+        margin-top: var(--space-lg);
         overflow: visible;
         padding: 0;
       }
@@ -113,10 +114,10 @@
       .nav-link {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: var(--space-sm);
         border-radius: 15px;
         color: var(--muted);
-        padding: 11px 12px;
+        padding: 11px var(--space-sm);
         font-size: 0.9rem;
         font-weight: 700;
       }
@@ -164,7 +165,7 @@
 
       .shell {
         margin: 0 24px 0 316px;
-        padding: 24px 0 56px;
+        padding: var(--space-xl) 0 56px;
       }
 
       .auth-banner {
@@ -176,11 +177,11 @@
 
       .auth-banner-inner {
         width: auto;
-        padding: 14px 18px;
+        padding: var(--space-md) var(--space-lg);
       }
 
       .page {
-        gap: 22px;
+        gap: var(--space-xl);
       }
 
       .page-heading {
@@ -199,7 +200,7 @@
 
       h1 {
         max-width: 920px;
-        margin-bottom: 12px;
+        margin-bottom: var(--space-sm);
         font-size: clamp(2rem, 4.5vw, 4.35rem);
         line-height: 1;
         letter-spacing: -0.05em;
@@ -246,11 +247,11 @@
       }
 
       .card-header {
-        padding: 22px 24px 0;
+        padding: var(--space-xl) var(--space-xl) 0;
       }
 
       .card-body {
-        padding: 20px 24px 24px;
+        padding: var(--space-lg) var(--space-xl) var(--space-xl);
       }
 
       .guidance {
@@ -398,6 +399,10 @@
       }
 
       @media (max-width: 1180px) {
+        :root {
+          --container-gutter: 24px;
+        }
+
         .app-header {
           position: sticky;
           top: 0;
@@ -411,10 +416,10 @@
         .topbar {
           display: grid;
           grid-template-columns: auto minmax(0, 1fr) auto;
-          gap: 14px;
+          gap: var(--space-md);
           height: auto;
           border-radius: 22px;
-          padding: 12px;
+          padding: var(--space-sm);
         }
 
         .brand {
@@ -442,18 +447,22 @@
         }
 
         .shell {
-          width: min(1460px, calc(100% - 24px));
+          width: min(1460px, calc(100% - var(--container-gutter)));
           margin: 0 auto;
-          padding-top: 18px;
+          padding-top: var(--space-lg);
         }
 
         .auth-banner {
           margin: 12px auto 0;
-          width: min(1460px, calc(100% - 24px));
+          width: min(1460px, calc(100% - var(--container-gutter)));
         }
       }
 
       @media (max-width: 720px) {
+        :root {
+          --container-gutter: 16px;
+        }
+
         .app-header {
           padding: 8px;
         }
@@ -472,12 +481,12 @@
         }
 
         .page-heading {
-          padding: 24px 18px;
+          padding: var(--space-xl) 18px;
         }
 
         .shell,
         .auth-banner {
-          width: min(100% - 16px, 1460px);
+          width: min(100% - var(--container-gutter), 1460px);
         }
 
         .card-header,
