@@ -1,27 +1,46 @@
 from __future__ import annotations
 
 import asyncio
+import sys
 import tempfile
 from pathlib import Path
 
 
 async def run_ocrmypdf(data: bytes, language: str, timeout_seconds: int) -> bytes:
-    import ocrmypdf
+    with tempfile.TemporaryDirectory() as tmpdir:
+        input_path = Path(tmpdir) / "input.pdf"
+        output_path = Path(tmpdir) / "output.pdf"
+        await asyncio.to_thread(input_path.write_bytes, data)
 
-    def _run() -> bytes:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            input_path = Path(tmpdir) / "input.pdf"
-            output_path = Path(tmpdir) / "output.pdf"
-            input_path.write_bytes(data)
-            ocrmypdf.ocr(
-                input_path,
-                output_path,
-                language=language,
-                deskew=True,
-                force_ocr=True,
-                optimize=0,
-                progress_bar=False,
-            )
-            return output_path.read_bytes()
+        process = await asyncio.create_subprocess_exec(
+            sys.executable,
+            "-m",
+            "ocrmypdf",
+            "--language",
+            language,
+            "--deskew",
+            "--force-ocr",
+            "--optimize",
+            "0",
+            "--quiet",
+            str(input_path),
+            str(output_path),
+            stdout=asyncio.subprocess.DEVNULL,
+            stderr=asyncio.subprocess.PIPE,
+        )
+        try:
+            _, stderr = await asyncio.wait_for(process.communicate(), timeout=timeout_seconds)
+        except TimeoutError:
+            process.terminate()
+            try:
+                await asyncio.wait_for(process.wait(), timeout=5)
+            except TimeoutError:
+                process.kill()
+                await process.wait()
+            raise
 
-    return await asyncio.wait_for(asyncio.to_thread(_run), timeout=timeout_seconds)
+        if process.returncode != 0:
+            detail = stderr.decode(errors="replace").strip()
+            raise RuntimeError(detail or f"OCRmyPDF exited with status {process.returncode}.")
+
+        return await asyncio.to_thread(output_path.read_bytes)
