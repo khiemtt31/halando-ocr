@@ -20,6 +20,14 @@
         --radius-lg: 28px;
         --radius-md: 20px;
         --radius-sm: 14px;
+        --container-gutter: 32px;
+        --space-2xs: 6px;
+        --space-xs: 8px;
+        --space-sm: 12px;
+        --space-md: 16px;
+        --space-lg: 20px;
+        --space-xl: 24px;
+        --space-2xl: 32px;
       }
 
       * {
@@ -102,9 +110,9 @@
       .topbar {
         display: grid;
         grid-template-columns: auto minmax(0, 1fr) auto;
-        gap: 18px;
+        gap: var(--space-lg);
         align-items: center;
-        width: min(1460px, calc(100% - 32px));
+        width: min(1460px, calc(100% - var(--container-gutter)));
         margin: 0 auto;
         padding: 14px 0;
       }
@@ -112,7 +120,7 @@
       .brand {
         display: inline-grid;
         grid-template-columns: auto auto;
-        gap: 10px;
+        gap: var(--space-sm);
         align-items: center;
         color: var(--text);
         text-decoration: none;
@@ -142,7 +150,7 @@
 
       .primary-nav {
         display: flex;
-        gap: 6px;
+        gap: var(--space-2xs);
         overflow-x: auto;
         padding: 4px;
         scrollbar-width: thin;
@@ -183,7 +191,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
-        gap: 8px;
+        gap: var(--space-xs);
       }
 
       .top-actions button {
@@ -193,7 +201,7 @@
       }
 
       .shell {
-        width: min(1460px, calc(100% - 32px));
+        width: min(1460px, calc(100% - var(--container-gutter)));
         margin: 0 auto;
         padding: 28px 0 56px;
       }
@@ -206,10 +214,10 @@
       .auth-banner-inner {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: var(--space-sm);
         align-items: center;
         justify-content: space-between;
-        width: min(1460px, calc(100% - 32px));
+        width: min(1460px, calc(100% - var(--container-gutter)));
         margin: 0 auto;
         padding: 12px 0;
       }
@@ -221,7 +229,7 @@
 
       .page {
         display: grid;
-        gap: 20px;
+        gap: var(--space-xl);
         animation: page-in 240ms ease both;
       }
 
@@ -233,12 +241,12 @@
       .page-heading {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
-        gap: 18px;
+        gap: var(--space-xl);
         align-items: end;
       }
 
       .eyebrow {
-        margin: 0 0 8px;
+        margin: 0 0 var(--space-xs);
         color: var(--accent);
         font-size: 0.78rem;
         font-weight: 850;
@@ -250,36 +258,32 @@
       h2,
       h3,
       p {
-        margin-top: 0;
+        margin: 0;
       }
 
       h1 {
-        margin-bottom: 10px;
+        margin-bottom: var(--space-sm);
         font-size: clamp(2.1rem, 5vw, 5rem);
         line-height: 0.95;
         letter-spacing: -0.06em;
       }
 
       h2 {
-        margin-bottom: 8px;
         font-size: 1.12rem;
         letter-spacing: -0.02em;
       }
 
       h3 {
-        margin-bottom: 8px;
         font-size: 1rem;
       }
 
       .lead {
         max-width: 780px;
-        margin-bottom: 0;
         color: var(--muted);
         font-size: clamp(1rem, 1.8vw, 1.22rem);
       }
 
       .hint {
-        margin-bottom: 14px;
         color: var(--muted);
       }
 
@@ -288,7 +292,7 @@
       }
 
       .fine-print {
-        margin: 10px 0 0;
+        margin: var(--space-2xs) 0 0;
         color: var(--faint);
         font-size: 0.84rem;
       }
@@ -296,14 +300,14 @@
       .guidance {
         display: grid;
         grid-template-columns: auto minmax(0, 1fr);
-        gap: 14px;
+        gap: var(--space-md);
         align-items: start;
         border: 1px solid rgba(125, 211, 252, 0.28);
         border-radius: var(--radius-md);
         background:
           linear-gradient(135deg, rgba(56, 189, 248, 0.13), rgba(14, 165, 233, 0.03)),
           rgba(10, 17, 32, 0.78);
-        padding: 16px;
+        padding: var(--space-md);
       }
 
       .guidance-icon {
@@ -321,11 +325,15 @@
       .grid-3,
       .content-grid {
         display: grid;
-        gap: 18px;
+        gap: var(--space-xl);
       }
 
       .grid-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-2 > :only-child {
+        grid-column: 1 / -1;
       }
 
       .grid-3 {
@@ -356,18 +364,22 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 14px;
+        gap: var(--space-md);
         padding: 20px 22px 0;
       }
 
       .card-body {
+        display: grid;
+        gap: var(--space-md);
         padding: 18px 22px 22px;
       }
 
       .status-card {
-        display: grid;
-        gap: 10px;
         min-height: 150px;
+      }
+
+      .status-card .card-body {
+        gap: var(--space-sm);
       }
 
       .status-card strong {
@@ -376,13 +388,12 @@
       }
 
       .status-card p {
-        margin-bottom: 0;
         color: var(--muted);
       }
 
       .step-list {
         display: grid;
-        gap: 12px;
+        gap: var(--space-md);
         margin: 0;
         padding: 0;
         list-style: none;
@@ -392,7 +403,7 @@
       .step-list li {
         display: grid;
         grid-template-columns: auto minmax(0, 1fr);
-        gap: 12px;
+        gap: var(--space-sm);
         align-items: start;
         counter-increment: step;
       }
@@ -414,11 +425,12 @@
       .mini-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: var(--space-sm);
         align-items: center;
       }
 
       .toolbar {
+        align-items: flex-start;
         justify-content: space-between;
       }
 
@@ -477,13 +489,18 @@
       label,
       .field-label {
         display: grid;
-        gap: 7px;
-        margin-bottom: 13px;
+        gap: var(--space-xs);
+        margin: 0;
         color: var(--muted);
         font-size: 0.82rem;
         font-weight: 800;
         letter-spacing: 0.045em;
         text-transform: uppercase;
+      }
+
+      .field-label + .actions,
+      .field-label + .mini-actions {
+        margin-top: var(--space-xs);
       }
 
       input,
@@ -515,12 +532,12 @@
       .form-row {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
+        gap: var(--space-md);
       }
 
       .drop-zone {
         display: grid;
-        gap: 12px;
+        gap: var(--space-sm);
         place-items: center;
         min-height: 210px;
         border: 1.5px dashed rgba(125, 211, 252, 0.36);
@@ -528,7 +545,7 @@
         background:
           radial-gradient(circle at center, rgba(56, 189, 248, 0.14), transparent 70%),
           rgba(6, 11, 22, 0.58);
-        padding: 24px;
+        padding: var(--space-xl);
         text-align: center;
         transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
       }
@@ -644,7 +661,7 @@
 
       .result {
         max-height: 360px;
-        margin: 14px 0 0;
+        margin: 0;
         overflow: auto;
         border: 1px solid var(--line);
         border-radius: 16px;
@@ -658,10 +675,12 @@
       .empty-state,
       .error-state,
       .success-state {
+        display: grid;
+        gap: var(--space-sm);
         border: 1px solid var(--line);
         border-radius: var(--radius-md);
         background: rgba(6, 11, 22, 0.58);
-        padding: 20px;
+        padding: var(--space-lg);
       }
 
       .error-state,
@@ -676,7 +695,7 @@
 
       .error-text {
         min-height: 1.2em;
-        margin: 8px 0 0;
+        margin: 0;
         font-size: 0.9rem;
       }
 
@@ -685,17 +704,19 @@
       .search-grid,
       .admin-grid {
         display: grid;
-        gap: 14px;
+        gap: var(--space-md);
       }
 
       .document-card,
       .job-card,
       .search-card,
       .admin-card {
+        display: grid;
+        gap: var(--space-md);
         border: 1px solid var(--line);
         border-radius: var(--radius-md);
         background: rgba(8, 14, 27, 0.66);
-        padding: 16px;
+        padding: var(--space-md);
         animation: card-in 220ms ease both;
       }
 
@@ -707,15 +728,15 @@
       .card-meta {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-        margin: 12px 0;
+        gap: var(--space-sm);
+        margin: 0;
       }
 
       .meta-item {
         min-width: 0;
         border-radius: 14px;
         background: rgba(255, 255, 255, 0.035);
-        padding: 10px;
+        padding: var(--space-sm);
       }
 
       .meta-label {
@@ -781,6 +802,10 @@
         font-weight: 850;
       }
 
+      details > .result {
+        margin-top: var(--space-sm);
+      }
+
       .toast-region {
         position: fixed;
         right: 18px;
@@ -795,7 +820,7 @@
         background: rgba(9, 15, 29, 0.96);
         box-shadow: var(--shadow);
         color: var(--text);
-        padding: 13px 15px;
+        padding: var(--space-sm) 15px;
       }
 
       .toast.error {
@@ -860,7 +885,7 @@
 
       .skeleton-grid {
         display: grid;
-        gap: 12px;
+        gap: var(--space-sm);
       }
 
       .skeleton-card {
@@ -939,10 +964,15 @@
       }
 
       @media (max-width: 720px) {
+        :root {
+          --container-gutter: 20px;
+          --space-xl: 20px;
+        }
+
         .topbar,
         .auth-banner-inner,
         .shell {
-          width: min(100% - 20px, 1460px);
+          width: min(100% - var(--container-gutter), 1460px);
         }
 
         .brand {

@@ -509,12 +509,14 @@
         if (authConfig.provider === 'keycloak') {
           $('authHint').textContent = `Using Keycloak realm ${authConfig.realm}. Sign in to receive a bearer token for protected API calls.`;
           $('localIdentityFields').hidden = true;
+          $('localIdentityUnavailable').hidden = false;
           $('loginBtn').hidden = false;
           updateAuthPrompt();
           return;
         }
         $('authHint').textContent = 'Using local demo auth. Protected API calls use the local identity values on this page.';
         $('localIdentityFields').hidden = false;
+        $('localIdentityUnavailable').hidden = true;
         $('loginBtn').hidden = true;
         updateAuthPrompt();
       }
@@ -920,6 +922,30 @@
         }
       }
 
+      async function copyExtractedText() {
+        const text = $('textOutput').textContent.trim();
+        if (!text || text === 'Extracted text will appear here.' || text === 'Loading extracted text...') {
+          notify('Read text before copying.', 'error');
+          return;
+        }
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents($('textOutput'));
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand('copy');
+            selection.removeAllRanges();
+          }
+          notify('Extracted text copied.', 'success');
+        } catch (_error) {
+          notify('Could not copy text. Select the text and copy manually.', 'error');
+        }
+      }
+
       async function downloadFile(path, fallbackName, outputId = 'textOutput') {
         try {
           const response = await fetch(path, { headers: await authHeaders() });
@@ -1251,6 +1277,7 @@
         $('refreshDocsBtn').addEventListener('click', listDocuments);
         $('listDocsBtn').addEventListener('click', listDocuments);
         $('getTextBtn').addEventListener('click', () => getText());
+        $('copyTextBtn').addEventListener('click', copyExtractedText);
         $('downloadOriginalBtn').addEventListener('click', () => {
           const id = $('textDocumentId').value.trim();
           if (id) downloadFile(`${API_BASE}/documents/${encodeURIComponent(id)}/download`, `${id}-original`);

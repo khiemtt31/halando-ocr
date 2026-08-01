@@ -61,6 +61,12 @@
                   <button id='saveIdentityBtn' class='secondary'>Save local identity</button>
                 </div>
               </div>
+              <div id='localIdentityUnavailable' class='card-body' hidden>
+                <div class='empty-state'>
+                  <h3>Local header identity is disabled</h3>
+                  <p class='hint'>This app is using Keycloak, so protected API calls use the signed-in bearer token instead of local demo headers.</p>
+                </div>
+              </div>
             </aside>
           </section>
         </section>
